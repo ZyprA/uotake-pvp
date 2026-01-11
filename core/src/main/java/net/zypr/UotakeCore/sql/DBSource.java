@@ -15,7 +15,7 @@ public class DBSource {
 
     public DBSource() {
         HikariConfig config = new HikariConfig();
-        config.setDriverClassName("org.mariadb.jdbc.Driver");
+        config.setDriverClassName(DRIVER_CLASS);
         config.setJdbcUrl(JDBC_URL);
         config.setUsername(USERNAME);
         config.setPassword(PASSWORD);
