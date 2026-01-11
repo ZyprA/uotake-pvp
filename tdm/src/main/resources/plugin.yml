@@ -1,0 +1,7 @@
+name: UotakeTDM
+version: '1.0-SNAPSHOT'
+main: net.zypr.uotakeTDM.UotakeTDM
+api-version: '1.21'
+authors: [ZyprA]
+description: Disguise Zombie plugin
+depend: [UotakeCore]

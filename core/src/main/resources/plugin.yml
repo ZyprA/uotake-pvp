@@ -1,0 +1,6 @@
+name: UotakeCore
+version: '1.0-SNAPSHOT'
+main: net.zypr.UotakeCore.UotakeCore
+api-version: '1.21'
+authors: [ZyprA]
+description: Disguise Zombie plugin
