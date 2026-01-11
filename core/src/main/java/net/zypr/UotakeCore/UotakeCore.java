@@ -1,6 +1,9 @@
 package net.zypr.UotakeCore;
 
 import me.deecaad.weaponmechanics.WeaponMechanics;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.JoinConfiguration;
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.zypr.UotakeCore.game.Game;
 import net.zypr.UotakeCore.game.GameBuilder;
 import net.zypr.UotakeCore.game.GameScheduler;
@@ -27,6 +30,15 @@ public final class UotakeCore extends JavaPlugin {
         uotakeCore = this;
         if (getServer().getPluginManager().getPlugin("WeaponMechanics") instanceof WeaponMechanics weaponMechanics) {
             this.weaponRepository = new WeaponRepository(weaponMechanics);
+        } else {
+            getServer().getConsoleSender().sendMessage(Component.join(JoinConfiguration.newlines(),
+                    Component.text("############### WARNING ###############", NamedTextColor.RED),
+                    Component.text("This plugin requires WeaponMechanics,", NamedTextColor.RED),
+                    Component.text("Please install the latest WeaponMechanics plugin,", NamedTextColor.RED),
+                    Component.text("or this plugin will be disabled.", NamedTextColor.RED)
+            ));
+            getServer().getPluginManager().disablePlugin(this);
+            return;
         }
 
         DBController dbController = new DBController(weaponRepository);

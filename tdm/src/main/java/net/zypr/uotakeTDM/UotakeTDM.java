@@ -1,5 +1,8 @@
 package net.zypr.uotakeTDM;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.JoinConfiguration;
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.zypr.Fukurou.api.phase.GamePhase;
 import net.zypr.UotakeCore.UotakeCore;
 import net.zypr.UotakeCore.game.GameBuilder;
@@ -13,10 +16,19 @@ public final class UotakeTDM extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        getServer().getLogger().info("Hello! from TDM");
 
         if (getServer().getPluginManager().getPlugin("UotakeCore") instanceof UotakeCore core) {
             this.uotakeCore = core;
+            getServer().getConsoleSender().sendMessage(Component.text("UotakeCore was found. UotakeTDM Plugin is enabled.", NamedTextColor.GREEN));
+        } else {
+            getServer().getConsoleSender().sendMessage(Component.join(JoinConfiguration.newlines(),
+                    Component.text("############### WARNING ###############", NamedTextColor.RED),
+                    Component.text("This plugin requires UotakeCore,", NamedTextColor.RED),
+                    Component.text("Please install the latest UotakeCore plugin,", NamedTextColor.RED),
+                    Component.text("or this plugin will be disabled.", NamedTextColor.RED)
+                    ));
+            getServer().getPluginManager().disablePlugin(this);
+            return;
         }
 
         GameBuilder<TDMGame> gameBuilder = new GameBuilder<>() {
