@@ -32,7 +32,7 @@ public class UotakePlayerStorage implements Listener {
     @NotNull
     public UotakePlayer getUotakePlayer(@NotNull Player player) {
         // Must: DBとの連携
-        return this.playerList.g(player.getUniqueId());
+        return this.playerList.get(player.getUniqueId());
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
